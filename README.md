@@ -1,1 +1,1 @@
-# RN
+# React Native Structure
