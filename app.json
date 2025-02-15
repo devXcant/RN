@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RN",
-    "slug": "RN",
+    "name": "meals",
+    "slug": "meals",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
