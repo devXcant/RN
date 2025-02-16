@@ -3,7 +3,7 @@ import { SafeAreaView, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 
 export default function Index() {
-  const [searchText, setSearchText] = useState()
+  const [searchText, setSearchText] = useState("");
   return (
     <SafeAreaView
       style={{
@@ -12,10 +12,13 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Searchbar placeholder='search here...' onChangeText={(e) => {
-        e.target.setSearchText
-        e.preventDefault()
-      }} value={searchText} />
+      <Searchbar
+        placeholder="search here..."
+        onChangeText={(e) => {
+          setSearchText(e);
+        }}
+        value={searchText}
+      />
       <Text>Start</Text>
     </SafeAreaView>
   );
