@@ -1,9 +1,10 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { Card } from "react-native-paper";
-import styled from "styled-components/native";
+import styled from "styled-components";
 
 const Title = styled(Text)`
+font-family: ${(props:any) => props.theme.fonts.body}
   padding: ${(props:any) => props.theme.space[3]};
   font-size: 20px;
   font-weight: bold;
