@@ -1,25 +1,15 @@
-import { useState } from "react";
-import { SafeAreaView, Text, View } from "react-native";
-import { Searchbar } from "react-native-paper";
+import React, { useState } from "react";
+import { StyleSheet } from "react-native";
+import RestaurantScreen from "./src/components/features/screen/restaurant.screen";
 
 export default function Index() {
-  const [searchText, setSearchText] = useState("");
-  return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Searchbar
-        placeholder="search here..."
-        onChangeText={(e) => {
-          setSearchText(e);
-        }}
-        value={searchText}
-      />
-      <Text>Start</Text>
-    </SafeAreaView>
-  );
-}
+  return (<RestaurantScreen />
+    
+)}
+
+const styles = StyleSheet.create({
+  main: {
+    padding: 20,
+    margin: 10,
+  },
+});
