@@ -1,16 +1,22 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { Card } from "react-native-paper";
-import styled from "styled-components";
+import styled from "styled-components/native";
+
+const Title = styled(Text)`
+  padding: 16px;
+  font-size: 20px;
+  font-weight: bold;
+`;
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
     icon,
     photos = [
-      "/assets/images/restaurant1.jpg",
-      "/assets/images/restaurant2.jpg",
-      "/assets/images/restaurant3.jpg",
+      require("../../../../../assets/images/restaurant1.jpg"),
+      require("../../../../../assets/images/restaurant2.jpg"),
+      require("../../../../../assets/images/restaurant3.jpg"),
     ],
     address = "123 Random Street",
     isOpenNow = true,
@@ -18,21 +24,15 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     isClosedTemporarily = false,
   } = restaurant;
 
-  const Title = styled.text`
-    padding: 16px;
-    fontsize: 20;
-    fontweight: "bold";
-  `;
-
-  // Use a placeholder image if no valid photo is available
-  const photoUri =
+  // Use the first photo if available; otherwise, fallback to a default image
+  const photoSource =
     photos.length > 0 && photos[0]
       ? photos[0]
-      : "/assets/images/restaurant1.jpg";
+      : require("../../../../../assets/images/restaurant1.jpg");
 
   return (
     <Card style={styles.card} elevation={5}>
-      <Card.Cover style={styles.cover} source={{ uri: photoUri }} />
+      <Card.Cover style={styles.cover} source={photoSource} />
       <Title>{name}</Title>
     </Card>
   );
@@ -47,8 +47,5 @@ const styles = StyleSheet.create({
   },
   cover: {
     backgroundColor: "white",
-  },
-  title: {
-    padding: 16,
   },
 });
