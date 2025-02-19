@@ -1,3 +1,4 @@
+import React from 'react'
 export const fonts = {
     body: "Montserrat_400Regular",
     heading: "Lato_400Regular",
@@ -21,3 +22,7 @@ export const fonts = {
     h2: "56px",
     h1: "112px",
   };
+
+
+
+

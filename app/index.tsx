@@ -22,9 +22,9 @@ export default function Index() {
   );
 }
 
-const styles = StyleSheet.create({
-  main: {
-    padding: 20,
-    margin: 10,
-  },
-});
+// const styles = StyleSheet.create({
+//   main: {
+//     padding: 20,
+//     margin: 10,
+//   },
+// });
