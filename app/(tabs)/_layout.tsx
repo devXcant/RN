@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
+import { Image, Platform } from "react-native";
 
 import { useColorScheme } from "../hooks/useColorScheme.web";
 import { HapticTab } from "@/app-example/components/HapticTab";
@@ -26,12 +26,12 @@ export default function TabLayout() {
         }),
       }}
     >
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="index"
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <Image src='/assets/svg/star.svg' width={28} height={28} alt='tab' />
           ),
         }}
       />
@@ -40,19 +40,20 @@ export default function TabLayout() {
         options={{
           title: "Maps",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            // <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <Image src='/assets/svg/star.svg' width={28} height={28} alt='tab' />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="settings"
         options={{
-          title: "Explore",
+          title: "Settings",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <Image src='/assets/svg/star.svg' width={28} height={28} alt='tab'  />
           ),
         }}
-      />
+      /> */}
     </Tabs>
   );
 }
