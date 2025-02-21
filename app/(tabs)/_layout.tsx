@@ -26,7 +26,7 @@ export default function TabLayout() {
         }),
       }}
     >
-      {/* <Tabs.Screen
+      <Tabs.Screen
         name="index"
         options={{
           title: "Home",
@@ -53,7 +53,7 @@ export default function TabLayout() {
             <Image src='/assets/svg/star.svg' width={28} height={28} alt='tab'  />
           ),
         }}
-      /> */}
+      />
     </Tabs>
   );
 }
