@@ -6,32 +6,33 @@ import { useColorScheme } from "../hooks/useColorScheme.web";
 import { HapticTab } from "@/app-example/components/HapticTab";
 import BlurTabBarBackground from "@/app-example/components/ui/TabBarBackground.ios";
 import { Colors } from "@/app-example/constants/Colors";
+import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const color = {red: '#b3b4b5',
+    green: '#fc122e',}
 
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: BlurTabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: "absolute",
-          },
-          default: {},
-        }),
-      }}
-    >
+  screenOptions={{
+    // tabBarActiveTintColor: color.red,  // Active icon color
+    tabBarInactiveTintColor: color.green, // Inactive icon color
+    headerShown: false,
+    tabBarButton: HapticTab,
+    tabBarStyle: Platform.select({
+      ios: { position: "absolute" },
+      default: {},
+    }),
+  }}
+>
+
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <Image src='/assets/svg/star.svg' width={28} height={28} alt='tab' />
+            <Feather name="home" size={24} color={color} />
           ),
         }}
       />
@@ -40,9 +41,10 @@ export default function TabLayout() {
         options={{
           title: "Maps",
           tabBarIcon: ({ color }) => (
-            // <IconSymbol size={28} name="paperplane.fill" color={color} />
-            <Image src='/assets/svg/star.svg' width={28} height={28} alt='tab' />
+            <MaterialCommunityIcons name="google-maps" size={24} color={color} />
+
           ),
+
         }}
       />
       <Tabs.Screen
@@ -50,7 +52,7 @@ export default function TabLayout() {
         options={{
           title: "Settings",
           tabBarIcon: ({ color }) => (
-            <Image src='/assets/svg/star.svg' width={28} height={28} alt='tab'  />
+            <Ionicons name="settings-outline" size={24} color={color} />
           ),
         }}
       />
