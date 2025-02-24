@@ -5,27 +5,26 @@ import RestaurantInfoCard from "../components/restaurant-info";
 
 interface RestaurantScreenProps {
   restaurantScreen: any[];
-  setRestaurantScreen: (restaurants: any[]) => void;
 }
 
-const RestaurantScreen: React.FC<RestaurantScreenProps> = ({ restaurantScreen, setRestaurantScreen }) => {
+const RestaurantScreen: React.FC<RestaurantScreenProps> = ({ restaurantScreen }) => {
   const [searchText, setSearchText] = useState("");
 
   return (
     <SafeAreaView style={styles.main}>
-      <View style={{ backgroundColor: "inherit" }}>
+      <View style={{ backgroundColor: 'inherit' }}>
         <Searchbar
           placeholder="Search here..."
           onChangeText={(e) => setSearchText(e)}
           value={searchText}
-          style={{ backgroundColor: "white", fontFamily: "Montserrat" }}
+          style={{ backgroundColor: 'white', fontFamily: 'Montserrat' }}
         />
       </View>
       <View>
         <FlatList
           data={restaurantScreen}
           renderItem={({ item }) => <RestaurantInfoCard restaurant={item} />}
-          keyExtractor={(item) => item.name.toString()}
+          keyExtractor={(item) => item.name}
           contentContainerStyle={{ padding: 1 }}
         />
       </View>
