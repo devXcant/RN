@@ -1,56 +1,14 @@
-import {
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { Card } from "react-native-paper";
-import styled from "styled-components";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../../assets/svg/star.js";
 import open from "../../../../../assets/svg/open.js";
-import React from "react";
-
-const Title = styled(Text)`
-  font-family: ${(props: any) => props.theme.fonts.body};
-  font-size: ${(props: any) => props.theme.fontSizes.body};
-  font-weight: bold;
-  color: ${(props: any) => props.theme.colors.ui.success};
-`;
-
-const Address = styled(Text)`
-  font-family: ${(props: any) => props.theme.fonts.body};
-  font-size: ${(props: any) => props.theme.fontSizes.body};
-  font-weight: 700;
-`;
-
-const Info = styled(View)`
-  padding: ${(props: any) => props.theme.space[3]};
-`;
-
-const Rating = styled(View)`
-  padding-top: ${(props: any) => props.theme.space[2]};
-  padding-bottom: ${(props: any) => props.theme.space[2]};
-  display: flex;
-  flex-direction: row;
-`;
-
-const Section = styled(View)`
-  flex-direction: row;
-  align-items: center;
-`;
-
-const SectionEnd = styled(View)`
-  flex: 1;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
 
 interface Restaurant {
   name: string;
   icon: string;
-  photos: ImageSourcePropType[];
+  photos: string[];
   address: string;
   isOpenNow: boolean;
   rating: number;
@@ -58,25 +16,11 @@ interface Restaurant {
 }
 
 interface RestaurantInfoCardProps {
-  restaurant?: Restaurant;
+  restaurant: Restaurant;
 }
 
-const defaultRestaurant: Restaurant = {
-  name: "Some Restaurant",
-  icon: "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-  photos: [
-    require("../../../../../assets/images/restaurant1.jpg"),
-    require("../../../../../assets/images/restaurant2.jpg"),
-    require("../../../../../assets/images/restaurant3.jpg"),
-  ],
-  address: "123 Random Street",
-  isOpenNow: true,
-  rating: 4,
-  isClosedTemporarily: true,
-};
-
 const RestaurantInfoCard: React.FC<RestaurantInfoCardProps> = ({
-  restaurant = defaultRestaurant
+  restaurant,
 }) => {
   if (!restaurant) {
     return null;
@@ -85,41 +29,44 @@ const RestaurantInfoCard: React.FC<RestaurantInfoCardProps> = ({
   const {
     name,
     icon,
-    photos,
+    photos = [],
     address,
     isOpenNow,
     rating,
     isClosedTemporarily,
   } = restaurant;
 
-  const ratingArray = Array.from(new Array(Math.ceil(rating)));
-
   const photoSource =
     photos.length > 0 && photos[0]
       ? photos[0]
       : require("../../../../../assets/images/restaurant1.jpg");
 
+  // Ensure rating is a valid number and within expected range
+  // Ensure rating is a valid number and within expected range
+const validRating = Number.isFinite(Number(rating)) ? Math.max(0, Math.min(Math.ceil(Number(rating)), 5)) : 0;
+const ratingArray = Array.from({ length: validRating });
+
+
   return (
     <Card style={styles.card} elevation={5}>
       <Card.Cover style={styles.cover} source={photoSource} />
-      <Info>
-        <Title>{name}</Title>
-        <Section>
-          <Rating>
+      <View style={styles.info}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.address}>{address}</Text>
+        <View style={styles.statusContainer}>
+          <Text style={styles.status}>
+            {isClosedTemporarily ? "CLOSED TEMPORARILY" : isOpenNow ? "OPEN NOW" : "CLOSED"}
+          </Text>
+          <View style={styles.ratingContainer}>
             {ratingArray.map((_, index) => (
               <SvgXml key={`star-${index}`} xml={star} width={20} height={20} />
             ))}
-          </Rating>
-          <SectionEnd>
-            {isClosedTemporarily && <Text>CLOSED TEMPORARILY</Text>}
-            <View style={{ marginLeft: 16 }} />
-            {isOpenNow && <SvgXml xml={open} width={16} height={16} />}
-            <View style={{ marginLeft: 16 }} />
-            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
-          </SectionEnd>
-        </Section>
-        <Address>{address}</Address>
-      </Info>
+            <Text style={styles.rating}>Rating: {rating}</Text>
+          </View>
+          {isOpenNow && <SvgXml xml={open} width={16} height={16} />}
+          <Image style={styles.icon} source={{ uri: icon }} />
+        </View>
+      </View>
     </Card>
   );
 };
@@ -131,6 +78,39 @@ const styles = StyleSheet.create({
   },
   cover: {
     backgroundColor: "white",
+  },
+  info: {
+    padding: 10,
+  },
+  name: {
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  address: {
+    fontSize: 14,
+    color: "gray",
+  },
+  statusContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  status: {
+    fontSize: 14,
+    // color: isOpenNow ? "green" : "red",
+  },
+  ratingContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  rating: {
+    fontSize: 14,
+    marginLeft: 5,
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    marginTop: 5,
   },
 });
 
