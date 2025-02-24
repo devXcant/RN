@@ -4,6 +4,7 @@ import RestaurantScreen from "../src/components/features/screen/restaurant.scree
 import { ThemeProvider } from "styled-components";
 import { theme } from "../src/infrastructure/theme";
 import { Montserrat_400Regular, useFonts } from "@expo-google-fonts/montserrat";
+import { RestaurantContextProvider } from "../src/services/restaurants/restaurant.context";
 
 // import { useFonts, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 
@@ -17,7 +18,10 @@ export default function Index() {
   }
   return (
     <ThemeProvider theme={theme}>
+      <RestaurantContextProvider>
+
       <RestaurantScreen />
+      </RestaurantContextProvider>
     </ThemeProvider>
   );
 }

@@ -3,12 +3,13 @@ const chicago = require("./chicago");
 const toronto = require("./toronto");
 const sanfrancisco = require("./sanfrancisco");
 
-export const mocks = {
+export const mocks: { [key: string]: any } = {
   "51.219448,4.402464": antwerp,
   "43.653225,-79.383186": toronto,
   "41.878113,-87.629799": chicago,
   "37.7749295,-122.4194155": sanfrancisco,
 };
+
 
 export const mockImages = [
   "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
