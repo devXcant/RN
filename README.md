@@ -3,7 +3,6 @@
 <<<<<<< HEAD
 CH7 -V55- 1:44
 =======
-CH7 -V46- 2:12
-continueatiom
+CH8 without following steady
 
 >>>>>>> ed606d579d9c7aa9e68819367220164adc87667e
