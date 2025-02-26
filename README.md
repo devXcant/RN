@@ -1,7 +1,7 @@
 # React Native - [EXPO, REACT NATIVE, TYPESCRIPT, ANDROID CONTROLS,GORHORM BOTTOMSHEET,ANT DESIGN,nativewind]
 
 <<<<<<< HEAD
-CH7 -V55- 1:44
+
 =======
 CH8 without following steady
 
