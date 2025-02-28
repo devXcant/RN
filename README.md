@@ -1,4 +1,4 @@
-# React Native - [EXPO, REACT NATIVE, TYPESCRIPT,ANT DESIGN,nativewind]
+# [EXPO, REACT NATIVE, TYPESCRIPT,ANT DESIGN,nativewind]
 
 <<<<<<< HEAD
 
